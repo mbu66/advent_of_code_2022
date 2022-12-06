@@ -41,15 +41,11 @@ fn parse_inventories(inventories: Vec<Vec<i32>>) -> (i32, i32, i32) {
 
 pub fn run() {
     let lines = utils::lines_from_file("./src/day_01/input.txt").expect("Failed to read line from file");
-
     let inventories = parse_lines(lines);
-
-    
     let calories = parse_inventories(inventories);
 
     assert_eq!(calories.0, 72240);
     assert_eq!(calories.1, 69625);
     assert_eq!(calories.2, 69092);
     assert_eq!(calories.0 + calories.1 + calories.2, 210957);
-    println!("Day 01: Success");
 }
