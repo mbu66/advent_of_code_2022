@@ -3,11 +3,8 @@
 fn parse_lines(lines: Vec<String>) -> Vec<Vec<i32>> {
     let mut section_ids = vec![];
     for line in lines {
-        let split = line.split(",").collect::<Vec<&str>>();
-        let mut first_ids = split[0].split("-").map(|x| x.parse::<i32>().unwrap()).collect::<Vec<i32>>();
-        let mut second_ids = split[1].split("-").map(|x| x.parse::<i32>().unwrap()).collect::<Vec<i32>>();
-        first_ids.append(&mut second_ids);
-        section_ids.push(first_ids);
+        let split = line.split(&[',', '-'][..]).map(|x| x.parse::<i32>().unwrap()).collect::<Vec<i32>>();
+        section_ids.push(split);
     }
     return section_ids;
 } 
