@@ -4,7 +4,6 @@ fn parse_lines(lines: Vec<String>) -> Vec<Vec<i32>> {
     let mut inventories = vec![];
     let mut temp_inventory = vec![];
     for line in lines {
-        
         if line.is_empty() {
             inventories.push(temp_inventory.clone());
             temp_inventory.clear();
