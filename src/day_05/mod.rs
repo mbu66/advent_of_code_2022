@@ -42,7 +42,7 @@ fn push_stack(stacks: &mut Vec<Vec<char>>, to_stack: u32, moving_crate: char){
 
 fn move_crates_9000(stacks: &mut Vec<Vec<char>>, moves: &Vec<Vec<u32>>){
     for current_move in moves {
-        for i in 0..current_move[0]{
+        for _ in 0..current_move[0]{
             let moving_crate = pop_stack(stacks, current_move[1] - 1);
             push_stack(stacks, current_move[2] - 1, moving_crate);
         }
@@ -52,7 +52,7 @@ fn move_crates_9000(stacks: &mut Vec<Vec<char>>, moves: &Vec<Vec<u32>>){
 fn move_crates_9001(stacks: &mut Vec<Vec<char>>, moves: &Vec<Vec<u32>>){
     for current_move in moves {
         let mut moving_crates = vec![];
-        for i in 0..current_move[0]{
+        for _ in 0..current_move[0]{
             moving_crates.push(pop_stack(stacks, current_move[1] - 1));
         }
         for i in 0..current_move[0]{
