@@ -14,3 +14,4 @@ My solutions were written in rust on windows and debugging in VScode.
 - contains the solution to the equivalent AOC problem
 - includes the utils module
 - entry point is `day_XX::run()`
+- asserts the correct answer is obtained for both stars
