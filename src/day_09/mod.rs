@@ -25,12 +25,9 @@ fn get_move(head_position: &(i32, i32), tail_position: &(i32, i32)) -> (i32, i32
 
 fn parse_lines(lines: &Vec<String>) -> (i32, i32) {
     let mut rope_position = vec![(0, 0); 10];
-    
     let mut visitied_positions = vec![std::collections::HashSet::new(); 2];
     visitied_positions[0].insert((0, 0));
     visitied_positions[1].insert((0, 0));
-
-    let mut num_positions_visited = (1, 1);
 
     for line in lines {
         let split = line.split(' ').collect::<Vec<&str>>();
@@ -50,15 +47,11 @@ fn parse_lines(lines: &Vec<String>) -> (i32, i32) {
                 rope_position[i+1].1 += tail_move.1;
             }
 
-            if visitied_positions[0].insert(rope_position[1]) {
-                num_positions_visited.0 += 1;
-            }
-            if visitied_positions[1].insert(rope_position[9]) {
-                num_positions_visited.1 += 1;
-            }
+            visitied_positions[0].insert(rope_position[1]);
+            visitied_positions[1].insert(rope_position[9]);
         }
     }
-    return num_positions_visited;
+    return (visitied_positions[0].len() as i32, visitied_positions[1].len() as i32);
 } 
 
 pub fn run() {
