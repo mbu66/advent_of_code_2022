@@ -49,12 +49,8 @@ fn transpose_forrest(forrest: &Vec<String>, size: usize) -> Vec<String> {
 }
 
 fn scenic_score(trees: &Vec<u32>, height: &u32) -> u32{
-    let mut score = 0;
-    for tree in trees {
-        score +=1;
-        if tree >= height{break;}
-    }
-    return score;
+    if trees.len() == 0 {return 0;}
+    return 1 + trees.iter().position(|&x| x >= *height).unwrap_or_else(||trees.len() - 1) as u32;
 }
 
 fn parse_lines_for_scenic_score(forrest: &Vec<String>, size: usize) -> u32 {
