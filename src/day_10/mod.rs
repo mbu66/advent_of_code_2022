@@ -6,31 +6,24 @@ fn render_image(image: &Vec<bool>) {
             true => print!("# "),
             false => print!(". "),
         }
-        if (i + 1) % 40 == 0{
-            print!("\n");
+        if (i + 1) % 40 == 0 { 
+            print!("\n"); 
         }
     }
 }
 
 fn get_strength(signal: &Vec<i32>) -> i32 {
     let mut signal_strength = 0;
-    signal_strength += 20 * signal[19];
-    signal_strength += 60 * signal[59];
-    signal_strength += 100 * signal[99];
-    signal_strength += 140 * signal[139];
-    signal_strength += 180 * signal[179];
-    signal_strength += 220 * signal[219];
+    for i in 0..6 { 
+        signal_strength += (20 + (40 * i)) as i32 * signal[19 + (40 * i)];
+    }
     return signal_strength;
 }
 
 fn parse_sprite(signal: &Vec<i32>) -> Vec<bool> {
     let mut image = vec![];
     for (i, position) in signal.iter().enumerate() {
-        if position - 1 <= i as i32 % 40  && i as i32 % 40 <= position + 1 {
-            image.push(true);
-        } else {
-            image.push(false);
-        }
+        image.push(position - 1 <= i as i32 % 40  && i as i32 % 40 <= position + 1);
     }
     return image;
 }
@@ -38,14 +31,11 @@ fn parse_sprite(signal: &Vec<i32>) -> Vec<bool> {
 fn parse_lines(lines: &Vec<String>) -> Vec<i32> {
     let mut signal = vec![1];
     for line in lines {
-        if line == "noop" {
-            signal.push(signal.last().copied().unwrap());
-        } else {
-            signal.push(signal.last().copied().unwrap());
+        signal.push(signal.last().copied().unwrap());
+        if line != "noop" {
             signal.push(signal.last().copied().unwrap() + line.split(' ').collect::<Vec<&str>>()[1].parse::<i32>().unwrap());
         }
     }
-
     return signal;
 } 
 
