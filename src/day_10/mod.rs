@@ -54,6 +54,7 @@ pub fn run() {
     let signal = parse_lines(&lines);
     let signal_strength = get_strength(&signal);
     let image = parse_sprite(&signal);
-    render_image(&image);
     assert_eq!(signal_strength, 13220);
+    render_image(&image);
+    //Rendering image should print the letters RUAKHBEK
 }
