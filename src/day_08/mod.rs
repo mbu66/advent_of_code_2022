@@ -22,9 +22,7 @@ fn parse_forrest(forrest: &Vec<String>, size: usize) -> Vec<Vec<bool>> {
 
 fn parse_lines_for_visible_trees(forrest: &Vec<String>, size: usize) -> i32 {
     let mut reversed_forrest = vec![];
-    for row in forrest {
-        reversed_forrest.insert(0, row.chars().rev().collect::<String>());
-    }
+    forrest.iter().for_each(|x| reversed_forrest.insert(0, x.chars().rev().collect::<String>()));
     let visible_trees_tl = parse_forrest(forrest, size);
     let visible_trees_br = parse_forrest(&reversed_forrest, size);
     
