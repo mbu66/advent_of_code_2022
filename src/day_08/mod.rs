@@ -62,16 +62,13 @@ fn parse_lines_for_scenic_score(forrest: &Vec<String>, size: usize) -> u32 {
     let transposed_forrest = transpose_forrest(forrest, size);
     for i in 0..size {
         for j in 0..size {
-            let (mut trees_l, mut trees_r, mut trees_t, mut trees_b) = (vec![], vec![], vec![], vec![]);
-            if i != 0       { trees_t = transposed_forrest[j][..i]    .chars().map(|c| c.to_digit(10).unwrap()).collect::<Vec<u32>>();}
-            if j != 0       { trees_l = forrest           [i][..j]    .chars().map(|c| c.to_digit(10).unwrap()).collect::<Vec<u32>>();}
-            if i != size - 1{ trees_b = transposed_forrest[j][(i+1)..].chars().map(|c| c.to_digit(10).unwrap()).collect::<Vec<u32>>();}
-            if j != size - 1{ trees_r = forrest           [i][(j+1)..].chars().map(|c| c.to_digit(10).unwrap()).collect::<Vec<u32>>();}
-            trees_l.reverse();
-            trees_t.reverse();
+            let trees_l = forrest           [i][..j]    .chars().map(|c| c.to_digit(10).unwrap()).rev().collect::<Vec<u32>>();
+            let trees_t = transposed_forrest[j][..i]    .chars().map(|c| c.to_digit(10).unwrap()).rev().collect::<Vec<u32>>();
+            let trees_r = forrest           [i][(j+1)..].chars().map(|c| c.to_digit(10).unwrap()).collect::<Vec<u32>>();
+            let trees_b = transposed_forrest[j][(i+1)..].chars().map(|c| c.to_digit(10).unwrap()).collect::<Vec<u32>>();
             let tree_height = forrest[i].chars().nth(j).map(|c| c.to_digit(10).unwrap()).unwrap() as u32;
-            let scenic_score = scenic_score(&trees_l, &tree_height) * scenic_score(&trees_r, &tree_height) * 
-                               scenic_score(&trees_t, &tree_height) * scenic_score(&trees_b, &tree_height);
+            let scenic_score = scenic_score(&trees_l, &tree_height) * scenic_score(&trees_t, &tree_height) * 
+                               scenic_score(&trees_r, &tree_height) * scenic_score(&trees_b, &tree_height);
             if max_scenic_score < scenic_score { max_scenic_score = scenic_score}
         }
     }
