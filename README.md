@@ -6,6 +6,8 @@ My solutions were written in rust on windows and debugging in VScode.
 ### `src/main.rs`
 - includes all the modules of the form day_XX
 - calls the `day_XX::run()` for each day
+- times this function call
+- all calls are muted -> uncomment the days you wish to run, then hit F5 to run
 ### `src/utils/mod.rs`
 - contains useful utility functions used for multiple days
 ### `src/day_XX/input.txt`
