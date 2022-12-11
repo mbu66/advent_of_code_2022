@@ -1,6 +1,6 @@
 #[path = "../utils/mod.rs"] mod utils;
 
-#[derive(Copy, Clone, Default, PartialEq)]
+#[derive(Copy, Clone, Default)]
 enum Operation { Sum(u64), Mul(u64), #[default] Sq }
 
 impl Operation {
