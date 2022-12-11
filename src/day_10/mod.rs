@@ -1,6 +1,6 @@
 #[path = "../utils/mod.rs"] mod utils;
 
-fn render_image(image: &Vec<bool>) {
+fn _render_image(image: &Vec<bool>) {
     for (i, pixel) in image.iter().enumerate() {
         match pixel {
             true => print!("# "),
@@ -43,8 +43,8 @@ pub fn run() {
     let lines = utils::lines_from_file("./src/day_10/input.txt").expect("Failed to read line from file");
     let signal = parse_lines(&lines);
     let signal_strength = get_strength(&signal);
-    let image = parse_sprite(&signal);
+    let _image = parse_sprite(&signal);
     assert_eq!(signal_strength, 13220);
-    render_image(&image);
     //Rendering image should print the letters RUAKHBEK
+    // _render_image(&_image);
 }
