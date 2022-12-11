@@ -10,6 +10,14 @@ My solutions were written in rust on windows and debugging in VScode.
 - all calls are muted -> uncomment the days you wish to run, then hit F5 to run
 ### `src/utils/mod.rs`
 - contains useful utility functions used for multiple days
+  ```rust
+  pub fn lines_from_file(filename: impl AsRef<Path>) -> io::Result<Vec<String>>
+  ```
+  * Reads from input text file and returns Vec<String> for each line
+  ```rust
+  pub fn chrono<F: Fn() -> T, T>(f: F) -> T
+  ```
+  * Will print the time taken to run the input function
 ### `src/day_XX/input.txt`
 - these files contain the input text from my AOC login
 ### `src/day_XX/mod.rs`
