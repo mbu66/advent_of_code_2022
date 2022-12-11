@@ -78,20 +78,21 @@ fn play_round(monkeys: &mut Vec<Monkey>, activity: &mut Vec<u64>, relief_divisor
     }
 }
 
-fn play_rounds(monkeys: &Vec<Monkey>, rounds: u32, relief_divisor: u64) -> u64 {
+fn calculate_monkey_business_level(monkeys: &Vec<Monkey>, rounds: u32, relief_divisor: u64) -> u64 {
+    let num_monkeys = monkeys.len();
     let mut monkeys = monkeys.to_vec();
-    let mut activity = vec![0; monkeys.len()];
+    let mut activity = vec![0; num_monkeys];
     for _ in 0..rounds { play_round(&mut monkeys, &mut activity, relief_divisor); }
     activity.sort();
-    activity[activity.len() - 2] * activity[activity.len() - 1]
+    return activity[num_monkeys - 2] * activity[num_monkeys - 1];
 }
 
 pub fn run()
 {
     let lines = utils::lines_from_file("./src/day_11/input.txt").expect("Failed to read line from file");
     let monkeys = parse_lines(&lines);
-    let answer1 = play_rounds(&monkeys, 20, 3);
-    let answer2 = play_rounds(&monkeys, 10000, 1);
-    assert_eq!(answer1, 61005);
-    assert_eq!(answer2, 20567144694);
+    let monkey_business_level = calculate_monkey_business_level(&monkeys, 20, 3);
+    let monkey_business_level_panic = calculate_monkey_business_level(&monkeys, 10000, 1);
+    assert_eq!(monkey_business_level, 61005);
+    assert_eq!(monkey_business_level_panic, 20567144694);
 }
