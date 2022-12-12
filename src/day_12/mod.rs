@@ -11,10 +11,10 @@ fn propagate<const UP: bool >(topology: &Vec<Vec<i32>>, coord_a: (usize, usize),
 }
 
 fn parse_coord<const UP: bool >(topology: &Vec<Vec<i32>>, start: (usize, usize), coord: (usize, usize), active_coords: &mut Vec<(usize, usize)>, distances: &mut Vec<Vec<i32>>) {
-    if coord.0 != distances.len() - 1 { propagate::<UP>(&topology, coord, (coord.0 + 1, coord.1), active_coords, distances); }
-    if coord.1 != distances[0].len() - 1 { propagate::<UP>(&topology, coord, (coord.0, coord.1 + 1), active_coords, distances); }
-    if coord.0 != 0 { propagate::<UP>(&topology, coord, (coord.0 - 1, coord.1), active_coords, distances); }
-    if coord.1 != 0 { propagate::<UP>(&topology, coord, (coord.0, coord.1 - 1), active_coords, distances); }
+    if coord.0 != distances.len() - 1 { propagate::<UP>(topology, coord, (coord.0 + 1, coord.1), active_coords, distances); }
+    if coord.1 != distances[0].len() - 1 { propagate::<UP>(topology, coord, (coord.0, coord.1 + 1), active_coords, distances); }
+    if coord.0 != 0 { propagate::<UP>(topology, coord, (coord.0 - 1, coord.1), active_coords, distances); }
+    if coord.1 != 0 { propagate::<UP>(topology, coord, (coord.0, coord.1 - 1), active_coords, distances); }
     if coord == start { distances[start.0][start.1] = 1; }
 }
 
@@ -24,7 +24,7 @@ fn parse_topology_down(topology: &Vec<Vec<i32>>, start: (usize, usize),) -> i32 
         let local_coords = active_coords.clone();
         active_coords.clear();
         for coord in local_coords {
-            parse_coord::<false>(&topology, start, coord, &mut active_coords, &mut distances);
+            parse_coord::<false>(topology, start, coord, &mut active_coords, &mut distances);
             if topology[coord.0][coord.1] == 0 { end_reached = true; end = coord.clone(); }
         }
     }
@@ -37,7 +37,7 @@ fn parse_topology_up(topology: &Vec<Vec<i32>>, start: (usize, usize), end: (usiz
         let local_coords = active_coords.clone();
         active_coords.clear();
         for coord in local_coords {
-            parse_coord::<true>(&topology, start, coord, &mut active_coords, &mut distances);
+            parse_coord::<true>(topology, start, coord, &mut active_coords, &mut distances);
             if coord == end { end_reached = true; }
         }
     }
