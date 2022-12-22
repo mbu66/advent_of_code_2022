@@ -39,7 +39,10 @@ fn parse_pairs(lines: Vec<String>) -> usize {
 pub fn run() {
     let lines = utils::lines_from_file("./src/day_13/input.txt").expect("Failed to read line from file");
     let num_correct_pairs = parse_pairs(lines);
-    println!("{num_correct_pairs}");
+    let decoder_key = 0;
+    assert_eq!(num_correct_pairs, 5529);
+    assert_eq!(decoder_key, 27690); // 130*213
+
     assert_eq!(parse_pairs(vec![String::from("[1,1,3,1,1]"), String::from("[1,1,5,1,1]") ]), 1);
     assert_eq!(parse_pairs(vec![String::from("[[1],[2,3,4]]"), String::from("[[1],4]") ]), 1);
     assert_eq!(parse_pairs(vec![String::from("[9]"), String::from("[[8,7,6]]") ]), 0);
@@ -50,7 +53,4 @@ pub fn run() {
     assert_eq!(parse_pairs(vec![String::from("[1,[2,[3,[4,[5,6,7]]]],8,9]"), String::from("[1,[2,[3,[4,[5,6,0]]]],8,9]") ]), 0);
     assert_eq!(parse_pairs(vec![String::from("[1,2,[3,4]]"), String::from("[1,2,[3,4,5]]") ]), 1);
     assert_eq!(parse_pairs(vec![String::from("[1,2,[3,4,5]]"), String::from("[1,2,[3,4]]") ]), 0);
-
-
-    // assert_eq!(, );
 }
