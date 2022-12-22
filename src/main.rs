@@ -49,8 +49,8 @@ fn main() {
     // utils::chrono(|| day_11::run());
     // print!("Running Day 12: ");
     // utils::chrono(|| day_12::run());
-    // print!("Running Day 13: ");
-    // utils::chrono(|| day_13::run());
+    print!("Running Day 13: ");
+    utils::chrono(|| day_13::run());
     // print!("Running Day 14: ");
     // utils::chrono(|| day_14::run());
     // print!("Running Day 15: ");
